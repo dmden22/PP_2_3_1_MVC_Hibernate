@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение User'а</title>
+</head>
+<body>
+
+<form method="POST" action="./update-user-by-id">
+    <label for="id">ID</label>
+    <input name="id" type="text" id="id" th:value="${id}" readonly>
+    <label for="id">Неизменяемое поле!</label>
+    <br>
+    <label for="name">Name</label>
+    <input name="name" type="text" id="name" th:value="${name}">
+    <br>
+    <label for="lastName">Фамилия</label>
+    <input name="lastName" type="text" id="lastName" th:value="${lastName}">
+    <br>
+    <label for="email">Эл. почта</label>
+    <input name="email" type="text" id="email" th:value="${email}">
+    <br>
+    <input type="submit" value="Обновить пользователя">
+</form>
+
+</body>
+</html>
