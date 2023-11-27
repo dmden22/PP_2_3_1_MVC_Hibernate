@@ -13,14 +13,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.thymeleaf.spring5.processor.SpringErrorClassTagProcessor;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:db.properties")
+@PropertySource("classpath:data.sql")
 @EnableTransactionManagement
 @ComponentScan(value = "com.dmden22.spring.mvc_hibernate")
 public class DatabaseConfig {
@@ -60,6 +60,8 @@ public class DatabaseConfig {
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.import_files_sql_extractor", "org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor");
+        properties.setProperty("hibernate.hbm2ddl.import_files", "data.sql");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
         return properties;
     }

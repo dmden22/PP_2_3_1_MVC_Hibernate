@@ -22,7 +22,6 @@
         <td th:utext="${user.getName()}">...</td>
         <td th:utext="${user.getLastName()}">...</td>
         <td th:utext="${user.getEmail()}">...</td>
-        <td></td>
 
         <td>
             <button th:href="@{update-user(id=${user.getId()}, name=${user.getName()}, lastName=${user.getLastName()}, email=${user.getEmail()})}"
