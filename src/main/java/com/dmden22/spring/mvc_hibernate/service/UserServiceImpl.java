@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
+    private UserDao userDao;//todo: указано ранее..
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional//todo: выносим общую, за исключением @Transactional(readOnly = true) - над классом
     public void addUser(User user) {
         userDao.addUser(user);
     }
@@ -47,4 +47,6 @@ public class UserServiceImpl implements UserService {
     public void updateUser(long id, String newName, String newLastName, String newEmail) {
         userDao.updateUser(id, newName, newLastName, newEmail);
     }
+
+    //todo: немного кривая функциональность - нельзя! менять id при update user
 }

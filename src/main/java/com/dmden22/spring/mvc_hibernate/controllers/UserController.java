@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;//todo: стоит прислушиваться к IDE ..когда подсвечивается поле серым
 
     @Autowired
     public UserController(UserService userService) {
