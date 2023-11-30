@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;//todo: указано ранее..
+    private final UserDao userDao;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -25,13 +26,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional//todo: выносим общую, за исключением @Transactional(readOnly = true) - над классом
     public void addUser(User user) {
         userDao.addUser(user);
     }
 
     @Override
-    @Transactional
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
@@ -43,10 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void updateUser(long id, String newName, String newLastName, String newEmail) {
         userDao.updateUser(id, newName, newLastName, newEmail);
     }
-
-    //todo: немного кривая функциональность - нельзя! менять id при update user
 }
